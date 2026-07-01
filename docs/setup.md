@@ -28,10 +28,11 @@ secrets.
 cp .env.example .env.local
 ```
 
-| Variable                   | Required | Description                                                                                                        |
-| -------------------------- | -------- | ------------------------------------------------------------------------------------------------------------------ |
-| `EXPO_PUBLIC_API_BASE_URL` | Yes      | Base URL of your backend API. Used by the Axios clients in `src/lib/config/axios.ts`.                              |
-| `EXPO_PUBLIC_SENTRY_DSN`   | No       | Sentry DSN read by `src/lib/config/sentry.ts`. Sentry only initializes for `preview`/`production` builds when set. |
+| Variable                          | Required | Description                                                                                                                              |
+| --------------------------------- | -------- | ---------------------------------------------------------------------------------------------------------------------------------------- |
+| `EXPO_PUBLIC_API_BASE_URL`        | Yes      | Base URL of your backend API. Used by the Axios clients in `src/lib/config/axios.ts`.                                                    |
+| `EXPO_PUBLIC_SENTRY_DSN`          | No       | Sentry DSN read by `src/lib/config/sentry.ts`. Sentry only initializes for `preview`/`production` builds when set.                       |
+| `EXPO_PUBLIC_ENABLE_THEME_SWITCH` | No       | Shows the light/dark theme switch. Set to `"false"` to hide it and lock the theme (default light). Read in `src/lib/config/features.ts`. |
 
 > `APP_VARIANT` (separate from the `EXPO_PUBLIC_*` vars) selects the native app
 > identity — bundle id, app name, and URL scheme — in `app.config.ts`. It is set

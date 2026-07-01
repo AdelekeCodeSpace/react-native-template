@@ -13,7 +13,7 @@ interface ThemeState {
 }
 
 export const useThemeStore = create<ThemeState>((set) => ({
-  theme: "dark",
+  theme: "light",
   setTheme: (theme) => {
     set({ theme });
     Appearance.setColorScheme(theme);
@@ -21,7 +21,7 @@ export const useThemeStore = create<ThemeState>((set) => ({
   },
   hydrate: async () => {
     const stored = await AsyncStorage.getItem(THEME_KEY);
-    const theme: Theme = stored === "light" ? "light" : "dark";
+    const theme: Theme = stored === "dark" ? "dark" : "light";
     Appearance.setColorScheme(theme);
     set({ theme });
   },

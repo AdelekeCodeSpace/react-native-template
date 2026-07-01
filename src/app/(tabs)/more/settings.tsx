@@ -6,6 +6,7 @@ import { Card } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
 import { Skeleton } from "~/components/ui/skeleton";
 import { ThemeToggle } from "~/components/theme-toggle";
+import { isThemeSwitchEnabled } from "~/lib/config/features";
 import { useThemeColors } from "~/lib/colors";
 
 function ProfileCard() {
@@ -50,6 +51,9 @@ function ProfileCard() {
 
 function AppearanceCard() {
   const colors = useThemeColors();
+
+  // No appearance controls to show when the theme switch is disabled.
+  if (!isThemeSwitchEnabled) return null;
 
   return (
     <Card>

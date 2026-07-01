@@ -3,6 +3,7 @@ import { Animated, Pressable, View } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
 import { useThemeStore } from "~/lib/stores/theme-store";
 import { darkColors, lightColors } from "~/lib/colors";
+import { isThemeSwitchEnabled } from "~/lib/config/features";
 
 export function ThemeToggle() {
   const { theme, setTheme } = useThemeStore();
@@ -31,6 +32,10 @@ export function ThemeToggle() {
   const dimColor = isDark
     ? darkColors["muted-foreground"]
     : lightColors["muted-foreground"];
+
+  // Hidden when the theme switch is disabled via env. Placed after all hooks so
+  // the rules of hooks are respected.
+  if (!isThemeSwitchEnabled) return null;
 
   return (
     <View className="flex-row items-center gap-2">
