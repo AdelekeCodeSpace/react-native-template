@@ -1,0 +1,71 @@
+# Preview pipeline.
+# Trigger: push to `main` (e.g. merging a feature PR into main).
+# Builds/updates with the `preview` profile. Does NOT submit to TestFlight or
+# Play internal testing — see deploy-to-production.yml for that.
+name: Deploy to preview
+on:
+  push:
+    branches: ["main"]
+jobs:
+  fingerprint:
+    name: Fingerprint
+    type: fingerprint
+    environment: preview
+  get_android_build:
+    name: Check for existing android build
+    needs: [fingerprint]
+    type: get-build
+    params:
+      fingerprint_hash: ${{ needs.fingerprint.outputs.android_fingerprint_hash }}
+      profile: preview
+  get_ios_build:
+    name: Check for existing ios build
+    needs: [fingerprint]
+    type: get-build
+    params:
+      fingerprint_hash: ${{ needs.fingerprint.outputs.ios_fingerprint_hash }}
+      profile: preview
+  build_android:
+    name: Build Android
+    needs: [get_android_build]
+    if: ${{ !needs.get_android_build.outputs.build_id }}
+    type: build
+    params:
+      platform: android
+      profile: preview
+  build_ios:
+    name: Build iOS
+    needs: [get_ios_build]
+    if: ${{ !needs.get_ios_build.outputs.build_id }}
+    type: build
+    params:
+      platform: ios
+      profile: preview
+  publish_android_update:
+    name: Publish Android update
+    needs: [get_android_build]
+    if: ${{ needs.get_android_build.outputs.build_id }}
+    type: update
+    params:
+      branch: preview
+      platform: android
+  publish_ios_update:
+    name: Publish iOS update
+    needs: [get_ios_build]
+    if: ${{ needs.get_ios_build.outputs.build_id }}
+    type: update
+    params:
+      branch: preview
+      platform: ios
+  # Optional Slack notification. Uncomment and set SLACK_WEBHOOK_URL as an EAS
+  # environment secret to enable.
+  # notify_slack:
+  #   name: Notify Slack
+  #   after: [build_android, build_ios, publish_android_update, publish_ios_update]
+  #   type: slack
+  #   params:
+  #     webhook_url: ${{ env.SLACK_WEBHOOK_URL }}
+  #     message: |
+  #       *Preview deployment* — branch `${{ github.ref_name }}` (${{ github.sha }})
+  #       *Triggered by:* ${{ github.triggering_actor }}
+  #       *Workflow:* ${{ workflow.url }}
