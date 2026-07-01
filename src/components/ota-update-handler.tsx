@@ -32,7 +32,11 @@ export function OTAUpdateHandler() {
     <View className="absolute bottom-5 left-5 right-5 z-[9999]">
       <View className="flex-row items-center justify-between rounded-xl border border-border bg-card px-4 py-3.5 shadow-lg">
         <View className="flex-1 flex-row items-center gap-3">
-          <Ionicons name="cloud-download-outline" size={20} color={colors.primary} />
+          <Ionicons
+            name="cloud-download-outline"
+            size={20}
+            color={colors.primary}
+          />
           <Text className="text-sm font-semibold text-card-foreground">
             New update ready!
           </Text>

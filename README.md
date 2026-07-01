@@ -37,23 +37,10 @@ npm run dev
 Day-to-day development runs on the **EAS development client**, not Expo Go
 (the template uses native modules like `expo-secure-store` and `expo-updates`).
 
-## Making it yours
-
-- `app.config.ts` — set the app name, bundle id, scheme, Sentry, and EAS
-  project (search for `TODO`).
-- `src/components/logo.tsx` — replace the placeholder wordmark/icon.
-- `src/features/auth/api.ts` — align the endpoints with your backend.
-- `src/components/force-update-modal.tsx` — set your store URLs.
-
-## Scripts
-
-| Script              | Description                                |
-| ------------------- | ------------------------------------------ |
-| `npm run dev`       | Start the dev server (development variant) |
-| `npm run lint`      | Run ESLint                                 |
-| `npm run format`    | Format with Prettier                       |
-| `npm run typecheck` | Type-check with `tsc --noEmit`             |
-| `npm run build`     | Export the JS bundle (`expo export`)       |
+Next: rename the app and wire up your backend (`app.config.ts`,
+`src/features/auth/api.ts`, `src/components/logo.tsx`, store URLs) — the full
+checklist, env vars, and npm scripts are in
+[docs/setup.md](docs/setup.md#first-time-customization).
 
 ## Project structure
 
