@@ -33,7 +33,7 @@ export default ({ config }: ConfigContext): ExpoConfig => ({
   slug: "react-native-template",
   version: "1.0.0",
   orientation: "portrait",
-  userInterfaceStyle: "dark",
+  userInterfaceStyle: "light",
   newArchEnabled: true,
   scheme: getAppScheme(),
   ios: {

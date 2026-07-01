@@ -24,3 +24,5 @@ overlap, AGENTS.md wins. For setup, env vars, and scripts see
   product, it probably doesn't belong here.
 - When you change scripts, workflows, or the branch model, update
   [docs/dev.md](docs/dev.md) and the relevant docs in the same change.
+- **Never add AI attribution to commits or PRs** — no `Co-Authored-By: Claude`
+  trailer and no "Generated with …" lines. See [AGENTS.md](AGENTS.md#commits).
