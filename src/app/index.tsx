@@ -74,7 +74,7 @@ export default function SplashIndex() {
             </Text>
           </View>
 
-          <Button size="lg" onPress={() => router.replace("/(auth)/sign-in")}>
+          <Button size="lg" onPress={() => router.replace("/(auth)/login")}>
             Get started
           </Button>
         </Animated.View>

@@ -1,6 +1,6 @@
-import { View, Text, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View, Text } from "react-native";
 import { Ionicons } from "@expo/vector-icons";
+import { Screen } from "~/components/screen";
 import { useGetProfile, useLogout } from "~/features/auth/hooks";
 import { Card } from "~/components/ui/card";
 import { Button } from "~/components/ui/button";
@@ -15,7 +15,7 @@ function ProfileCard() {
   return (
     <Card>
       <View className="mb-4 flex-row items-center gap-3 border-b border-border pb-4">
-        <View className="h-9 w-9 items-center justify-center rounded-full bg-primary/15">
+        <View className="bg-primary/15 h-9 w-9 items-center justify-center rounded-full">
           <Ionicons name="person-outline" size={18} color={colors.primary} />
         </View>
         <Text className="text-sm font-semibold text-foreground">
@@ -54,7 +54,7 @@ function AppearanceCard() {
   return (
     <Card>
       <View className="mb-4 flex-row items-center gap-3 border-b border-border pb-4">
-        <View className="h-9 w-9 items-center justify-center rounded-full bg-primary/15">
+        <View className="bg-primary/15 h-9 w-9 items-center justify-center rounded-full">
           <Ionicons
             name="color-palette-outline"
             size={18}
@@ -75,19 +75,10 @@ function AppearanceCard() {
 }
 
 export default function SettingsScreen() {
-  const insets = useSafeAreaInsets();
   const { mutate: logout, isPending } = useLogout();
 
   return (
-    <ScrollView
-      className="flex-1 bg-background"
-      contentContainerStyle={{
-        paddingBottom: insets.bottom + 24,
-        paddingHorizontal: 20,
-        gap: 16,
-        paddingTop: 16,
-      }}
-    >
+    <Screen variant="detail">
       <ProfileCard />
       <AppearanceCard />
 
@@ -98,6 +89,6 @@ export default function SettingsScreen() {
       >
         Sign out
       </Button>
-    </ScrollView>
+    </Screen>
   );
 }

@@ -11,7 +11,7 @@ export interface PaginationMeta {
   totalPages: number;
 }
 
-export type PaginatedResponse<T, DataKey extends string = 'data'> = Record<
+export type PaginatedResponse<T, DataKey extends string = "data"> = Record<
   DataKey,
   T[]
 > & {

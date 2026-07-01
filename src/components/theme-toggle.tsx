@@ -28,7 +28,9 @@ export function ThemeToggle() {
     ? darkColors["accent-foreground"]
     : lightColors.secondary;
   const iconColor = isDark ? darkColors.foreground : lightColors.foreground;
-  const dimColor = isDark ? darkColors["muted-foreground"] : lightColors["muted-foreground"];
+  const dimColor = isDark
+    ? darkColors["muted-foreground"]
+    : lightColors["muted-foreground"];
 
   return (
     <View className="flex-row items-center gap-2">
@@ -43,7 +45,9 @@ export function ThemeToggle() {
       <Pressable
         accessibilityRole="switch"
         accessibilityState={{ checked: isDark }}
-        accessibilityLabel={isDark ? "Switch to light theme" : "Switch to dark theme"}
+        accessibilityLabel={
+          isDark ? "Switch to light theme" : "Switch to dark theme"
+        }
         onPress={() => setTheme(isDark ? "light" : "dark")}
         style={{
           width: 40,
@@ -58,7 +62,9 @@ export function ThemeToggle() {
             width: 18,
             height: 18,
             borderRadius: 9,
-            backgroundColor: isDark ? darkColors["primary-foreground"] : lightColors["primary-foreground"],
+            backgroundColor: isDark
+              ? darkColors["primary-foreground"]
+              : lightColors["primary-foreground"],
             transform: [{ translateX: thumbTranslate }],
             shadowColor: "#000",
             shadowOffset: { width: 0, height: 1 },

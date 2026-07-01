@@ -11,7 +11,8 @@ class AppVersionService {
    */
   static getMinRequiredVersion = async (): Promise<AppVersionConfig | null> => {
     try {
-      const { data } = await axiosInstance.get<AppVersionConfig>("/get-app-version");
+      const { data } =
+        await axiosInstance.get<AppVersionConfig>("/get-app-version");
       return data ?? null;
     } catch (error: any) {
       // 404 = endpoint not wired up yet; anything else = network / server error.
