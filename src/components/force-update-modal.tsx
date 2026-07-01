@@ -62,7 +62,8 @@ export function ForceUpdateModal() {
 
   const currentVersion = Constants.expoConfig?.version ?? "0.0.0";
   const latestVersion = appVersionConfig?.version ?? currentVersion;
-  const needsUpdate = !isLoading && isVersionOlder(currentVersion, latestVersion);
+  const needsUpdate =
+    !isLoading && isVersionOlder(currentVersion, latestVersion);
 
   const [visible, setVisible] = useState(false);
   const [canDismiss, setCanDismiss] = useState(true);

@@ -66,6 +66,14 @@ These are exactly what CI runs on PRs into `main`
 (`.github/workflows/ci.yml`). If you add a `package.json` script or change the
 workflows/branch model, update [docs/dev.md](docs/dev.md) in the same change.
 
+## Commits
+
+- **Do not add AI attribution to commits or PRs.** Never include a
+  `Co-Authored-By: Claude` (or any AI/agent) trailer, and do not append
+  "Generated with …" lines to commit messages or PR bodies. Commits are authored
+  solely by the human contributor.
+- Write clear, imperative commit subjects describing what changed and why.
+
 ## Deployment (don't trigger by accident)
 
 - Merging into **`main`** runs the **preview** EAS Workflow.

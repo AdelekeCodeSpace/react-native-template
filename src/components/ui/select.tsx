@@ -203,7 +203,7 @@ export function Select({
                       setOpen(false);
                     }}
                     style={{ height: ITEM_HEIGHT }}
-                    className="flex-row items-center justify-between px-3 active:bg-muted/30"
+                    className="active:bg-muted/30 flex-row items-center justify-between px-3"
                   >
                     <Text
                       className={cn(

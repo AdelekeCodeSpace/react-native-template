@@ -1,8 +1,8 @@
-import { View, Text, Image } from 'react-native';
-import { cn } from '~/lib/utils/helpers';
-import { getInitials } from '~/lib/utils/helpers';
+import { View, Text, Image } from "react-native";
+import { cn } from "~/lib/utils/helpers";
+import { getInitials } from "~/lib/utils/helpers";
 
-type AvatarSize = 'sm' | 'default' | 'lg';
+type AvatarSize = "sm" | "default" | "lg";
 
 interface AvatarProps {
   src?: string | null;
@@ -11,22 +11,30 @@ interface AvatarProps {
   className?: string;
 }
 
-const sizeStyles: Record<AvatarSize, { container: string; text: string; px: number }> = {
-  sm:      { container: 'h-8 w-8',   text: 'text-xs',  px: 32 },
-  default: { container: 'h-10 w-10', text: 'text-sm',  px: 40 },
-  lg:      { container: 'h-14 w-14', text: 'text-base', px: 56 },
+const sizeStyles: Record<
+  AvatarSize,
+  { container: string; text: string; px: number }
+> = {
+  sm: { container: "h-8 w-8", text: "text-xs", px: 32 },
+  default: { container: "h-10 w-10", text: "text-sm", px: 40 },
+  lg: { container: "h-14 w-14", text: "text-base", px: 56 },
 };
 
-export function Avatar({ src, name, size = 'default', className }: AvatarProps) {
+export function Avatar({
+  src,
+  name,
+  size = "default",
+  className,
+}: AvatarProps) {
   const { container, text, px } = sizeStyles[size];
   const initials = getInitials(name);
 
   return (
     <View
       className={cn(
-        'items-center justify-center overflow-hidden rounded-full bg-accent',
+        "items-center justify-center overflow-hidden rounded-full bg-accent",
         container,
-        className
+        className,
       )}
     >
       {src ? (
@@ -36,7 +44,7 @@ export function Avatar({ src, name, size = 'default', className }: AvatarProps) 
           resizeMode="cover"
         />
       ) : (
-        <Text className={cn('font-semibold text-accent-foreground', text)}>
+        <Text className={cn("font-semibold text-accent-foreground", text)}>
           {initials}
         </Text>
       )}

@@ -1,7 +1,7 @@
-import { View, Text, Pressable, ScrollView } from "react-native";
-import { useSafeAreaInsets } from "react-native-safe-area-context";
+import { View, Text, Pressable } from "react-native";
 import { router } from "expo-router";
 import { Ionicons } from "@expo/vector-icons";
+import { Screen } from "~/components/screen";
 import { useThemeStore } from "~/lib/stores/theme-store";
 import { darkColors, lightColors } from "~/lib/colors";
 
@@ -50,18 +50,8 @@ function MenuItem({
 }
 
 export default function MoreMenuScreen() {
-  const insets = useSafeAreaInsets();
-
   return (
-    <ScrollView
-      className="flex-1 bg-background"
-      contentContainerStyle={{
-        paddingTop: insets.top + 12,
-        paddingBottom: insets.bottom + 24,
-        paddingHorizontal: 20,
-        gap: 12,
-      }}
-    >
+    <Screen contentContainerStyle={{ gap: 12 }}>
       <Text className="mb-2 text-2xl font-semibold text-foreground">More</Text>
 
       <MenuItem
@@ -72,6 +62,6 @@ export default function MoreMenuScreen() {
         iconBg="rgba(96,165,250,0.12)"
         onPress={() => router.push("/(tabs)/more/settings")}
       />
-    </ScrollView>
+    </Screen>
   );
 }

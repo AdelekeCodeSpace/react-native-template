@@ -1,13 +1,13 @@
-import { useEffect } from 'react';
-import { View } from 'react-native';
+import { useEffect } from "react";
+import { View } from "react-native";
 import Animated, {
   useSharedValue,
   useAnimatedStyle,
   withRepeat,
   withTiming,
   Easing,
-} from 'react-native-reanimated';
-import { cn } from '~/lib/utils/helpers';
+} from "react-native-reanimated";
+import { cn } from "~/lib/utils/helpers";
 
 interface SkeletonProps {
   className?: string;
@@ -20,7 +20,7 @@ export function Skeleton({ className }: SkeletonProps) {
     opacity.value = withRepeat(
       withTiming(0.4, { duration: 800, easing: Easing.inOut(Easing.ease) }),
       -1,
-      true
+      true,
     );
   }, [opacity]);
 
@@ -29,7 +29,7 @@ export function Skeleton({ className }: SkeletonProps) {
   return (
     <Animated.View
       style={animatedStyle}
-      className={cn('rounded-lg bg-muted', className)}
+      className={cn("rounded-lg bg-muted", className)}
     />
   );
 }

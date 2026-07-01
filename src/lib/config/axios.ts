@@ -28,7 +28,7 @@ export const axiosPrivate = createAxiosInstance();
 
 async function logout() {
   await deleteToken();
-  router.replace("/(auth)/sign-in");
+  router.replace("/(auth)/login");
 }
 
 axiosPrivate.interceptors.request.use(
@@ -116,14 +116,24 @@ const safeParseRequestBody = (data: unknown) => {
   }
 };
 
+// Header names redacted from debug logs so bearer tokens / cookies are never
+// surfaced in the in-app DebugOverlay (which is enabled on preview builds too).
+const REDACTED_HEADERS = new Set(["authorization", "cookie", "set-cookie"]);
+
 const headersToRecord = (
   headers: unknown,
 ): Record<string, string> | undefined => {
   if (!headers || typeof headers !== "object") return undefined;
   const out: Record<string, string> = {};
-  for (const [key, value] of Object.entries(headers as Record<string, unknown>)) {
+  for (const [key, value] of Object.entries(
+    headers as Record<string, unknown>,
+  )) {
     if (value == null) continue;
-    out[key] = typeof value === "string" ? value : String(value);
+    out[key] = REDACTED_HEADERS.has(key.toLowerCase())
+      ? "[redacted]"
+      : typeof value === "string"
+        ? value
+        : String(value);
   }
   return out;
 };
@@ -142,8 +152,7 @@ const attachDebugLogger = (
   instance.interceptors.response.use(
     (response) => {
       const startTime = (response.config as any)?._debugStartTime as
-        | number
-        | undefined;
+        number | undefined;
       const duration =
         typeof startTime === "number" ? Date.now() - startTime : undefined;
 
@@ -166,8 +175,7 @@ const attachDebugLogger = (
     },
     (error) => {
       const startTime = (error?.config as any)?._debugStartTime as
-        | number
-        | undefined;
+        number | undefined;
       const duration =
         typeof startTime === "number" ? Date.now() - startTime : undefined;
 

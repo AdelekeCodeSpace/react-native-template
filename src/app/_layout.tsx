@@ -52,7 +52,10 @@ export default function RootLayout() {
       <GestureHandlerRootView style={{ flex: 1 }}>
         <TanstackQueryProvider>
           <View
-            style={[{ flex: 1 }, theme === "dark" ? darkThemeVars : lightThemeVars]}
+            style={[
+              { flex: 1 },
+              theme === "dark" ? darkThemeVars : lightThemeVars,
+            ]}
           >
             <OfflineBanner />
             <ForceUpdateModal />

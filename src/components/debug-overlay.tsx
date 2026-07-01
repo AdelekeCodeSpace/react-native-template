@@ -143,7 +143,7 @@ export const DebugOverlay = () => {
   }, [logs, errorsOnly, filter]);
 
   const selected = useMemo(
-    () => (selectedId ? logs.find((l) => l.id === selectedId) ?? null : null),
+    () => (selectedId ? (logs.find((l) => l.id === selectedId) ?? null) : null),
     [selectedId, logs],
   );
 
@@ -480,7 +480,7 @@ const LogRow = ({
           <Text style={styles.statusPillText}>
             {entry.error && entry.status === undefined
               ? "ERR"
-              : entry.status ?? "—"}
+              : (entry.status ?? "—")}
           </Text>
         </View>
         <Text style={styles.method}>{entry.method}</Text>
@@ -573,7 +573,7 @@ const DebugDetailView = ({
             <Text style={styles.statusPillText}>
               {entry.error && entry.status === undefined
                 ? "ERR"
-                : entry.status ?? "—"}
+                : (entry.status ?? "—")}
             </Text>
           </View>
           <Text style={styles.detailMethod}>{entry.method}</Text>
@@ -588,9 +588,7 @@ const DebugDetailView = ({
           <MetaPill label="Time" value={formatTime(entry.timestamp)} />
           <MetaPill
             label="Duration"
-            value={
-              entry.duration !== undefined ? `${entry.duration} ms` : "—"
-            }
+            value={entry.duration !== undefined ? `${entry.duration} ms` : "—"}
           />
         </View>
       </View>
@@ -614,10 +612,7 @@ const DebugDetailView = ({
               style={[styles.tab, active ? styles.tabActive : null]}
             >
               <Text
-                style={[
-                  styles.tabText,
-                  active ? styles.tabTextActive : null,
-                ]}
+                style={[styles.tabText, active ? styles.tabTextActive : null]}
               >
                 {t.label}
               </Text>

@@ -31,7 +31,8 @@ export function useLogin() {
       router.replace("/(tabs)");
     },
     onError: (error) => {
-      const errorData = (error as AxiosError).response?.data as ApiErrorResponse;
+      const errorData = (error as AxiosError).response
+        ?.data as ApiErrorResponse;
       handleApiError(error, {
         404: () =>
           notifyError({
@@ -39,7 +40,9 @@ export function useLogin() {
               "Invalid credentials, please check your inputs and try again",
           }),
         401: () =>
-          notifyError({ message: errorData?.message || "Authentication failed" }),
+          notifyError({
+            message: errorData?.message || "Authentication failed",
+          }),
         403: () =>
           notifyError({
             message: "Account not activated. Please check your email.",
@@ -59,13 +62,13 @@ export function useLogout() {
       clearAuthToken();
       await deleteToken();
       notifySuccess({ message: "Logged out successfully" });
-      router.replace("/(auth)/sign-in");
+      router.replace("/(auth)/login");
     },
     onError: async () => {
       // Force logout even on error
       clearAuthToken();
       await deleteToken();
-      router.replace("/(auth)/sign-in");
+      router.replace("/(auth)/login");
     },
   });
 }
@@ -97,7 +100,7 @@ export function useResetPassword() {
       notifySuccess({
         message: "Password reset successfully! Please sign in.",
       });
-      router.replace("/(auth)/sign-in");
+      router.replace("/(auth)/login");
     },
     onError: (error) => {
       handleApiError(error, {

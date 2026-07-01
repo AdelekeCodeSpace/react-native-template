@@ -1,5 +1,5 @@
-import { View, Text, Pressable, ScrollView } from 'react-native';
-import { cn } from '~/lib/utils/helpers';
+import { View, Text, Pressable, ScrollView } from "react-native";
+import { cn } from "~/lib/utils/helpers";
 
 export interface SegmentOption {
   label: string;
@@ -22,7 +22,9 @@ export function SegmentedControl({
   scrollable = false,
 }: SegmentedControlProps) {
   const content = (
-    <View className={cn('flex-row gap-1 rounded-xl bg-secondary p-1', className)}>
+    <View
+      className={cn("flex-row gap-1 rounded-xl bg-secondary p-1", className)}
+    >
       {options.map((option) => {
         const isActive = option.value === value;
         return (
@@ -30,14 +32,14 @@ export function SegmentedControl({
             key={option.value}
             onPress={() => onChange(option.value)}
             className={cn(
-              'flex-1 items-center rounded-lg px-3 py-2',
-              isActive ? 'bg-card' : 'bg-transparent'
+              "flex-1 items-center rounded-lg px-3 py-2",
+              isActive ? "bg-card" : "bg-transparent",
             )}
           >
             <Text
               className={cn(
-                'text-sm font-medium',
-                isActive ? 'text-foreground' : 'text-muted-foreground'
+                "text-sm font-medium",
+                isActive ? "text-foreground" : "text-muted-foreground",
               )}
             >
               {option.label}
